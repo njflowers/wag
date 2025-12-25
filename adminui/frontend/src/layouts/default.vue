@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia'
 
 import { useAuthStore } from '@/stores/auth'
 import { useInstanceDetailsStore } from '@/stores/serverInfo'
+import ThemeToggle from '@/components/ThemeToggle.vue'
 
 import { Icons } from '@/util/icons'
 
@@ -59,7 +60,8 @@ async function logout() {
 </script>
 
 <template>
-  <div class="drawer lg:drawer-open bg-slate-100">
+  <div class="drawer lg:drawer-open bg-base-200">
+    <ThemeToggle />
     <input id="my-drawer" name="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content h-max">
       <router-view />
@@ -135,7 +137,7 @@ async function logout() {
                 <span>Advanced</span>
               </label>
 
-              <ul tabindex="0" class="menu dropdown-content rounded-box w-52 bg-base-100 p-2 pb-4 text-black shadow">
+              <ul tabindex="0" class="menu dropdown-content rounded-box w-52 bg-base-100 p-2 pb-4 shadow">
                 <li v-for="link in debugPageLinks" :key="link.name"
                   :class="route.path == link.to ? 'bordered' : 'hover-bordered'">
                   <RouterLink :to="link.to">
@@ -170,7 +172,7 @@ async function logout() {
                 <span>Welcome, <strong>{{ loggedInUser?.username }}</strong></span>
               </label>
 
-              <ul tabindex="0" class="menu dropdown-content rounded-box w-52 bg-base-100 p-2 pb-4 text-black shadow">
+              <ul tabindex="0" class="menu dropdown-content rounded-box w-52 bg-base-100 p-2 pb-4 shadow">
                 <li :class="route.path == '/account' ? 'bordered' : 'hover-bordered'">
                   <RouterLink to="/account">
                     <span><font-awesome-icon :icon="Icons.User" /></span>
@@ -212,7 +214,7 @@ async function logout() {
 }
 
 .menu li.hover-bordered:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: oklch(var(--b1) / 0.1);
 }
 
 .menu li.bordered {
